@@ -52,7 +52,9 @@ void printMainMenu(char* userInput, int numOfPlayers) {
 
 void printRules() {
 
-      //TODO: Game RUles
+      printf("You have three attempts (in Yahtzee, "rolls") to make a scoring hand. You begin by first rolling all five dice. From there you will select which dice you wish to save and which dice you wish to re-roll.");
+
+  
 
 }
 
