@@ -8,14 +8,18 @@
 
 typedef struct ui {
 
-      char* userInput;
+	char* userInput;
+
+	int numOfPlayers
 
 }UI;
 
-void printMainMenu(char* userInput, int num);
+void printMainMenu(UI interface);
 
-void printSubMenu(char* userInput);
+void menuChoice(UI interface);
 
-void printScorecard(char* userInput);
+void printSubMenu(UI interface);
+
+void printScorecard(UI interface);
 
 void printRules();
