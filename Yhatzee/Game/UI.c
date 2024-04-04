@@ -1,7 +1,15 @@
 #include "UI.h"
 #include "GameLogic.h"
+#include "Die.h"
 
 void printMainMenu(UI interface) {
+
+	printf("__   __        _      _                     \n");
+	printf("\ \ / /       | |    | |                    \n");
+	printf(" \ V /   __ _ | |__  | |_  ____  ___   ___  \n");
+	printf("  \ /   / _` || '_ \ | __||_  / / _ \ / _ \ \n");
+	printf("  | |  | (_| || | | || |_  / / |  __/|  __/ \n");
+	printf("  \_/   \__,_||_| |_| \__|/___| \___| \___| \n");
 
 	printf("Number of players: %d", interface.numOfPlayers);
 
@@ -18,6 +26,8 @@ void printMainMenu(UI interface) {
 
 void menuChoice(UI interface) {
 
+	DIE d;
+
 	int choice = 0;
 
 	scanf_s("%d", &choice);
@@ -27,7 +37,24 @@ void menuChoice(UI interface) {
 
 	case 1:
 
-		// TODO: Play game
+		d = CreateDie(); // die is created
+
+		int dchoice = 0;
+
+		printf("How many dice would you like to roll?\n");
+
+		scanf_s("%d", &dchoice);
+
+		// Roll dice based on user input
+		if (dchoice == 1) {
+
+			RollDie(&d);
+
+		} else if (dchoice > 1 && dchoice < 6) {
+
+			RollArrayOfDice(&d, dchoice);
+
+		}
 
 		break;
 
@@ -95,13 +122,6 @@ void printSubMenu(UI interface) {
 }
 
 void printScorecard(UI interface) {
-
-	printf("__   __        _      _                     \n");
-	printf("\ \ / /       | |    | |                    \n");
-	printf(" \ V /   __ _ | |__  | |_  ____  ___   ___  \n");
-	printf("  \ /   / _` || '_ \ | __||_  / / _ \ / _ \ \n");
-	printf("  | |  | (_| || | | || |_  / / |  __/|  __/ \n");
-	printf("  \_/   \__,_||_| |_| \__|/___| \___| \___| \n");
 
 	// logo^^
 
