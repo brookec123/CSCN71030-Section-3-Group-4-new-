@@ -20,6 +20,6 @@ void menuChoice(UI interface);
 
 void printSubMenu(UI interface);
 
-void printScorecard(UI interface);
+void printScorecard(UI interface, int** scoreArray);
 
 void printRules();
