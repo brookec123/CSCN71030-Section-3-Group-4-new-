@@ -41,20 +41,77 @@ void menuChoice(UI interface) {
 
 		int dchoice = 0;
 
-		printf("How many dice would you like to roll?\n");
+		printf("\n\nHow many dice would you like to roll? Please pick a number from 1 to 5:");
 
 		scanf_s("%d", &dchoice);
 
 		// Roll dice based on user input
-		if (dchoice == 1) {
+		
+		do {
 
-			RollDie(&d);
+			if (dchoice == 1) {
 
-		} else if (dchoice > 1 && dchoice < 6) {
+				int dicenum = 0;
 
-			RollArrayOfDice(&d, dchoice);
+				printf("Which dice would you like to roll? Please pick a number from 1 to 5: ");
+				
+				scanf_s("%d", &dicenum);
 
-		}
+				if (dicenum != 1) {
+
+					for (int i = 0; i < dicenum; i++) {
+
+						RollDie(&d);
+
+					}
+
+				}
+				else {
+
+					RollDie(&d);
+
+				}
+
+				printf("\n\nYou have rolled %d dice.\n\n", dicenum);
+
+			} else if (dchoice > 1 && dchoice < 6) {
+
+				RollArrayOfDice(&d, dchoice);
+
+			}
+			else {
+
+				fprintf(stderr, "ERROR: Dice number not valid. Please re-enter.");
+
+			}
+
+			char schoice;
+
+			printf("Would you like to roll more dice? Y/N: ");
+
+			scanf_s("%c", &schoice, 1);
+
+			if (schoice == 'Y' || schoice == 'y') {
+
+				dchoice == 1;
+
+			}
+			else if (schoice == 'N' || schoice == 'n') {
+
+				dchoice == 0;
+
+				printScorecard(interface, 0);
+
+			} 
+			else {
+
+				fprintf(stderr, "ERROR: Not a valid input. Please re-enter.");
+
+			}
+
+		} while (dchoice >= 1 && dchoice <= 5);
+		
+
 
 		break;
 
@@ -121,90 +178,90 @@ void printSubMenu(UI interface) {
 
 }
 
-void printScorecard(UI interface) {
+void printScorecard(UI interface, int** scoreArray) {
 
-	// logo^^
+	PLAYER p;
 
 	printf(" ___________________________________________________________________________________________________\n");
 	printf(" | UPPER SECTION || HOW TO SCORE || GAME #1 || GAME #2 || GAME #3 || GAME #4 || GAME #5 || GAME #6 |\n");
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
 	printf(" |         +---+ ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" |ACES =   | 1 | ||              ||         ||         ||         ||         ||         ||         |\n");
+	printf(" |ACES =   | 1 | ||              ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][0], scoreArray[1][0], scoreArray[2][0], scoreArray[3][0], scoreArray[4][0], scoreArray[5][0]);
 	printf(" |         +---+ ||              ||         ||         ||         ||         ||         ||         |\n");
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
 	printf(" |         +---+ ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" |TWOS =   | 2 | ||              ||         ||         ||         ||         ||         ||         |\n");
+	printf(" |TWOS =   | 2 | ||              ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][1], scoreArray[1][1], scoreArray[2][1], scoreArray[3][1], scoreArray[4][1], scoreArray[5][1]);
 	printf(" |         +---+ ||              ||         ||         ||         ||         ||         ||         |\n");
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
 	printf(" |         +---+ ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" |THREES = | 3 | ||              ||         ||         ||         ||         ||         ||         |\n");
+	printf(" |THREES = | 3 | ||              ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][2], scoreArray[1][2], scoreArray[2][2], scoreArray[3][2], scoreArray[4][2], scoreArray[5][2]);
 	printf(" |         +---+ ||              ||         ||         ||         ||         ||         ||         |\n");
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
 	printf(" |         +---+ ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" |FOURS =  | 4 | ||              ||         ||         ||         ||         ||         ||         |\n");
+	printf(" |FOURS =  | 4 | ||              ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][3], scoreArray[1][3], scoreArray[2][3], scoreArray[3][3], scoreArray[4][3], scoreArray[5][3]);
 	printf(" |         +---+ ||              ||         ||         ||         ||         ||         ||         |\n");
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
 	printf(" |         +---+ ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" |FIVES =  | 5 | ||              ||         ||         ||         ||         ||         ||         |\n");
+	printf(" |FIVES =  | 5 | ||              ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][4], scoreArray[1][4], scoreArray[2][4], scoreArray[3][4], scoreArray[4][4], scoreArray[5][4]);
 	printf(" |         +---+ ||              ||         ||         ||         ||         ||         ||         |\n");
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
 	printf(" |         +---+ ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" |SIXES =  | 6 | ||              ||         ||         ||         ||         ||         ||         |\n");
+	printf(" |SIXES =  | 6 | ||              ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][5], scoreArray[1][5], scoreArray[2][5], scoreArray[3][5], scoreArray[4][5], scoreArray[5][5]);
 	printf(" |         +---+ ||              ||         ||         ||         ||         ||         ||         |\n");
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" |TOTAL SCORE    || ===========> ||         ||         ||         ||         ||         ||         |\n");
+	printf(" |TOTAL SCORE    || ===========> ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][14], scoreArray[1][14], scoreArray[2][14], scoreArray[3][14], scoreArray[4][14], scoreArray[5][14]);
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" |BONUS          ||   SCORE 35   ||         ||         ||         ||         ||         ||         |\n");
+	printf(" |BONUS          ||   SCORE 35   ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][15], scoreArray[1][15], scoreArray[2][15], scoreArray[3][15], scoreArray[4][15], scoreArray[5][15]);
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" |TOTAL          || ===========> ||         ||         ||         ||         ||         ||         |\n");
+	printf(" |TOTAL          || ===========> ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][16], scoreArray[1][16], scoreArray[2][16], scoreArray[3][16], scoreArray[4][16], scoreArray[5][16]);
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||                                                                                |\n");
 	printf(" | LOWER SECTION ||                                                                                |\n");
 	printf(" |_______________||________________________________________________________________________________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" | 3 OF A KIND   ||              ||         ||         ||         ||         ||         ||         |\n");
+	printf(" | 3 OF A KIND   ||              ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][6], scoreArray[1][6], scoreArray[2][6], scoreArray[3][6], scoreArray[4][6], scoreArray[5][6]);
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" | 4 OF A KIND   ||              ||         ||         ||         ||         ||         ||         |\n");
+	printf(" | 4 OF A KIND   ||              ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][7], scoreArray[1][7], scoreArray[2][7], scoreArray[3][7], scoreArray[4][7], scoreArray[5][7]);
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" | FULL HOUSE    ||              ||         ||         ||         ||         ||         ||         |\n");
+	printf(" | FULL HOUSE    ||              ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][8], scoreArray[1][8], scoreArray[2][8], scoreArray[3][8], scoreArray[4][8], scoreArray[5][8]);
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" | SM. STRAIGHT  ||              ||         ||         ||         ||         ||         ||         |\n");
+	printf(" | SM. STRAIGHT  ||              ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][9], scoreArray[1][9], scoreArray[2][9], scoreArray[3][9], scoreArray[4][9], scoreArray[5][9]);
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" | LG. STRAIGHT  ||              ||         ||         ||         ||         ||         ||         |\n");
+	printf(" | LG. STRAIGHT  ||              ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][10], scoreArray[1][10], scoreArray[2][10], scoreArray[3][10], scoreArray[4][10], scoreArray[5][10]);
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" |    YAHTZEE    ||              ||         ||         ||         ||         ||         ||         |\n");
+	printf(" |    YAHTZEE    ||              ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][11], scoreArray[1][11], scoreArray[2][11], scoreArray[3][11], scoreArray[4][11], scoreArray[5][11]);
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" |    CHANCE     ||              ||         ||         ||         ||         ||         ||         |\n");
+	printf(" |    CHANCE     ||              ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][12], scoreArray[1][12], scoreArray[2][12], scoreArray[3][12], scoreArray[4][12], scoreArray[5][12]);
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||  |   |  ||  |   |  ||  |   |  ||  |   |  ||  |   |  ||  |   |  |\n");
 	printf(" |               ||              ||  |   |  ||  |   |  ||  |   |  ||  |   |  ||  |   |  ||  |   |  |\n");
 	printf(" |    YATZHEE    ||______________||__|___|__||__|___|__||__|___|__||__|___|__||__|___|__||__|___|__|\n");
 	printf(" |     BONUS     ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
+	printf(" |               ||              ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][13], scoreArray[1][13], scoreArray[2][13], scoreArray[3][13], scoreArray[4][13], scoreArray[5][13]);
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" | TOTAL OF UPPER|| ===========> ||         ||         ||         ||         ||         ||         |\n");
+	printf(" | TOTAL OF UPPER|| ===========> ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][16], scoreArray[1][16], scoreArray[2][16], scoreArray[3][16], scoreArray[4][16], scoreArray[5][16]);
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" | TOTAL OF LOWER|| ===========> ||         ||         ||         ||         ||         ||         |\n");
+	printf(" | TOTAL OF LOWER|| ===========> ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][17], scoreArray[1][17], scoreArray[2][17], scoreArray[3][17], scoreArray[4][17], scoreArray[5][17]);
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
-	printf(" |  GRAND TOTAL  || ===========> ||         ||         ||         ||         ||         ||         |\n");
+	printf(" |  GRAND TOTAL  || ===========> ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][18], scoreArray[1][18], scoreArray[2][18], scoreArray[3][18], scoreArray[4][18], scoreArray[5][18]);
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 
 
