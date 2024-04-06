@@ -7,12 +7,21 @@
 
 int main(int argc, char* argv) {
 
-    if (argv[1] == 1) {
+    if (argc != 2) {
 
-        
+        fprintf(stderr, "\n\nERROR: No players.\n\n");
+
+        exit(1);
 
     }
 
+    UI u;
+
+    u.numOfPlayers = atoi(argv[1]);
+
+    printMainMenu(u);
+
+    menuChoice(u);
 
     return 0;
 }
