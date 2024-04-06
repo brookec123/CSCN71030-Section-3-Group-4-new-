@@ -10,16 +10,18 @@ typedef struct ui {
 
 	char* userInput;
 
-	int numOfPlayers
+	int numOfPlayers;
 
 }UI;
 
-void printMainMenu(UI interface);
+void printMainMenu(UI u);
 
-void menuChoice(UI interface);
+void menuChoice(UI u);
 
-void printSubMenu(UI interface);
+void printSubMenu(UI u);
 
-void printScorecard(UI interface, int** scoreArray);
+void printScorecard(UI u, int** scoreArray);
 
 void printRules();
+
+void diceAnimation();
