@@ -1,8 +1,11 @@
 #include "UI.h"
 #include "GameLogic.h"
 #include "Die.h"
+#include "FileIO.h"
 
-void printMainMenu(UI interface) {
+UI u;
+
+void printMainMenu(UI u) {
 
 	printf("__   __        _      _                     \n");
 	printf("\ \ / /       | |    | |                    \n");
@@ -11,22 +14,25 @@ void printMainMenu(UI interface) {
 	printf("  | |  | (_| || | | || |_  / / |  __/|  __/ \n");
 	printf("  \_/   \__,_||_| |_| \__|/___| \___| \___| \n");
 
-	printf("Number of players: %d", interface.numOfPlayers);
+	printf("Number of players: %d", u.numOfPlayers);
 
 	printf("\n\nWelcome to Yhatzee! This is a console based version of the beloved classic dice game... known as Yahtzee.\n");
 	printf("\n=================================================================================================================\n");
 
 	printf("Menu:\n\n");
 	printf("1. Play Game.\n");
-	printf("2. View Rules.\n");
-	printf("3. Exit Game.\n");
+	printf("2. Load Saved Game.\n");
+	printf("3. View Rules.\n");
+	printf("4. Exit Game.\n");
 	printf("\nChoice: ");
 
 }
 
-void menuChoice(UI interface) {
+void menuChoice(UI u) {
 
 	DIE d;
+	PLAYER p;
+	PPLAYER pp;
 
 	int choice = 0;
 
@@ -59,6 +65,8 @@ void menuChoice(UI interface) {
 
 				if (dicenum != 1) {
 
+					diceAnimation();
+
 					for (int i = 0; i < dicenum; i++) {
 
 						RollDie(&d);
@@ -68,6 +76,8 @@ void menuChoice(UI interface) {
 				}
 				else {
 
+					diceAnimation();
+					
 					RollDie(&d);
 
 				}
@@ -75,6 +85,8 @@ void menuChoice(UI interface) {
 				printf("\n\nYou have rolled %d dice.\n\n", dicenum);
 
 			} else if (dchoice > 1 && dchoice < 6) {
+
+				diceAnimation();
 
 				RollArrayOfDice(&d, dchoice);
 
@@ -100,7 +112,7 @@ void menuChoice(UI interface) {
 
 				dchoice == 0;
 
-				printScorecard(interface, 0);
+				printScorecard(u, 0);
 
 			} 
 			else {
@@ -110,30 +122,36 @@ void menuChoice(UI interface) {
 			}
 
 		} while (dchoice >= 1 && dchoice <= 5);
-		
-
 
 		break;
 
 	case 2:
 
-		printRules();
-
-		printMainMenu(interface);
-
-		break;
+		loadGame('r', pp);
 
 	case 3:
 
-		// TODO: Exit & Save game.
+		printRules();
+
+		printMainMenu(u);
 
 		break;
+
+	case 4:
+
+		saveGame('w', p);
+
+		printf("\n\nGame successfully saved!\n");
+		printf("\nThanks for playing!\n");
+
+		break;
+
 
 	default:
 
 		fprintf(stderr, "ERROR: Invalid menu selection. ");
 
-		printMainMenu(interface);
+		printMainMenu(u);
 
 		break;
 	}
@@ -172,13 +190,13 @@ void printRules() {
 
 }
 
-void printSubMenu(UI interface) {
+void printSubMenu(UI u) {
 
 
 
 }
 
-void printScorecard(UI interface, int** scoreArray) {
+void printScorecard(UI u, int** scoreArray) {
 
 	PLAYER p;
 
@@ -264,5 +282,18 @@ void printScorecard(UI interface, int** scoreArray) {
 	printf(" |  GRAND TOTAL  || ===========> ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][18], scoreArray[1][18], scoreArray[2][18], scoreArray[3][18], scoreArray[4][18], scoreArray[5][18]);
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 
+
+}
+
+void diceAnimation() {
+
+	// Dice animation whenever someone rolls
+
+	printf("\n ____\n");
+	printf(" /\' .\    _____\n");
+	printf("/: \___\  / .  /\\n");
+	printf("\' / . / /____/..\\n");
+	printf(" \/___/  \'  '\  /\n");
+	printf("          \'__'\/\n");
 
 }
