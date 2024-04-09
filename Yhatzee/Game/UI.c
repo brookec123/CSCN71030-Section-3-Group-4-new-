@@ -261,7 +261,6 @@ void printScorecard(UI u, int** scoreArray) {
 	printf(" |  GRAND TOTAL  || ===========> ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][18], scoreArray[1][18], scoreArray[2][18], scoreArray[3][18], scoreArray[4][18], scoreArray[5][18]);
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 
-	free(scoreArray);
 
 }
 
