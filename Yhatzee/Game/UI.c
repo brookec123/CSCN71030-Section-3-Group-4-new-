@@ -3,20 +3,18 @@
 #include "Die.h"
 #include "FileIO.h"
 
-UI u;
-
 void printMainMenu(UI u) {
 
-	printf("__   __        _      _                     \n");
-	printf("\ \ / /       | |    | |                    \n");
-	printf(" \ V /   __ _ | |__  | |_  ____  ___   ___  \n");
-	printf("  \ /   / _` || '_ \ | __||_  / / _ \ / _ \ \n");
+	printf("\n__   __        _      _                     \n");
+	printf("\\ \\ / /       | |    | |                    \n");
+	printf(" \\ V /   __ _ | |__  | |_  ____  ___   ___  \n");
+	printf("  \\ /   / _` || '_ \\ | __||_  / / _ \\ / _ \\ \n");
 	printf("  | |  | (_| || | | || |_  / / |  __/|  __/ \n");
-	printf("  \_/   \__,_||_| |_| \__|/___| \___| \___| \n");
+	printf("  \\_/   \\__,_||_| |_| \\__|/___| \\___| \\___| \n");
 
-	printf("Number of players: %d", u.numOfPlayers);
+	printf("\nNumber of players: %d", u.numOfPlayers);
 
-	printf("\n\nWelcome to Yhatzee! This is a console based version of the beloved classic dice game... known as Yahtzee.\n");
+	printf("\n\nWelcome to Yhatzee! This is a console based version of the beloved classic dice game... known as Yhatzee.\n");
 	printf("\n=================================================================================================================\n");
 
 	printf("Menu:\n\n");
@@ -30,9 +28,7 @@ void printMainMenu(UI u) {
 
 void menuChoice(UI u) {
 
-	DIE d;
 	PLAYER p;
-	PPLAYER pp;
 
 	int choice = 0;
 
@@ -43,91 +39,15 @@ void menuChoice(UI u) {
 
 	case 1:
 
-		d = CreateDie(); // die is created
-
-		int dchoice = 0;
-
-		printf("\n\nHow many dice would you like to roll? Please pick a number from 1 to 5:");
-
-		scanf_s("%d", &dchoice);
-
-		// Roll dice based on user input
-		
-		do {
-
-			if (dchoice == 1) {
-
-				int dicenum = 0;
-
-				printf("Which dice would you like to roll? Please pick a number from 1 to 5: ");
-				
-				scanf_s("%d", &dicenum);
-
-				if (dicenum != 1) {
-
-					diceAnimation();
-
-					for (int i = 0; i < dicenum; i++) {
-
-						RollDie(&d);
-
-					}
-
-				}
-				else {
-
-					diceAnimation();
-					
-					RollDie(&d);
-
-				}
-
-				printf("\n\nYou have rolled %d dice.\n\n", dicenum);
-
-			} else if (dchoice > 1 && dchoice < 6) {
-
-				diceAnimation();
-
-				RollArrayOfDice(&d, dchoice);
-
-			}
-			else {
-
-				fprintf(stderr, "ERROR: Dice number not valid. Please re-enter.");
-
-			}
-
-			char schoice;
-
-			printf("Would you like to roll more dice? Y/N: ");
-
-			scanf_s("%c", &schoice, 1);
-
-			if (schoice == 'Y' || schoice == 'y') {
-
-				dchoice == 1;
-
-			}
-			else if (schoice == 'N' || schoice == 'n') {
-
-				dchoice == 0;
-
-				printScorecard(u, 0);
-
-			} 
-			else {
-
-				fprintf(stderr, "ERROR: Not a valid input. Please re-enter.");
-
-			}
-
-		} while (dchoice >= 1 && dchoice <= 5);
+		printSubMenu(u);
 
 		break;
 
 	case 2:
 
-		loadGame('r', pp);
+		loadGame("file.txt", &p);
+
+		break;
 
 	case 3:
 
@@ -139,8 +59,7 @@ void menuChoice(UI u) {
 
 	case 4:
 
-		saveGame('w', p);
-
+		saveGame("file.txt", p);
 		printf("\n\nGame successfully saved!\n");
 		printf("\nThanks for playing!\n");
 
@@ -149,7 +68,7 @@ void menuChoice(UI u) {
 
 	default:
 
-		fprintf(stderr, "ERROR: Invalid menu selection. ");
+		fprintf(stderr, "\nERROR: Invalid menu selection.");
 
 		printMainMenu(u);
 
@@ -157,7 +76,6 @@ void menuChoice(UI u) {
 	}
 
 }
-
 
 void printRules() {
 
@@ -192,15 +110,76 @@ void printRules() {
 
 void printSubMenu(UI u) {
 
+	for (int i = 0; i < 5; i++) {
 
+		u.d[i] = CreateDie(); // die is created
+
+	}
+
+	diceAnimation(); 
+
+	RollArrayOfDice(u.d, 5);
+
+	printf("\n\nYou have rolled all 5 dice.");
+
+	for (int i = 0; i < 5; i++) {
+
+		printf("%d ", GetValue(u.d[i]));
+
+	}
+
+	int dchoice = -1;
+	
+	int ddchoice = -1;
+
+	int numOfRolls = 1;
+
+	printf("%d", u.p[0].currentGameNumber);
+
+	printScorecard(u, u.p[0].canScore);
+
+	printf("\n\nHow many dice would you like to reroll? Please pick a number from 0 to 5: ");
+
+	scanf_s("%d", &dchoice);
+
+	printf("%d", dchoice);
+
+	while (dchoice != 0 || numOfRolls > 3) {
+
+		
+		printf("\n\nWhich dice would you like to reroll? (1 to 5)");
+
+		scanf_s("%d", &ddchoice);
+
+		if (ddchoice <= 5 && ddchoice >= 1) {
+
+			RollDie(&u.d[ddchoice - 1]);
+
+		}
+		
+		printf("\n\nThe dice chosen have been rerolled.\n\n");
+
+		calculateCanScore(u.d, &u.p[0]);
+
+		printScorecard(u, u.p[0].canScore);
+
+		printf("\n\nHow many dice would you like to reroll? Please pick a number from 0 to 5: ");
+		
+		scanf_s("%d", &dchoice);
+
+		printf("%d", dchoice);
+	
+		
+		numOfRolls++;
+
+	}
 
 }
 
 void printScorecard(UI u, int** scoreArray) {
 
-	PLAYER p;
 
-	printf(" ___________________________________________________________________________________________________\n");
+	printf("\n\n___________________________________________________________________________________________________\n");
 	printf(" | UPPER SECTION || HOW TO SCORE || GAME #1 || GAME #2 || GAME #3 || GAME #4 || GAME #5 || GAME #6 |\n");
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
@@ -282,6 +261,7 @@ void printScorecard(UI u, int** scoreArray) {
 	printf(" |  GRAND TOTAL  || ===========> ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    ||   %d    |\n", scoreArray[0][18], scoreArray[1][18], scoreArray[2][18], scoreArray[3][18], scoreArray[4][18], scoreArray[5][18]);
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 
+	free(scoreArray);
 
 }
 
@@ -290,10 +270,10 @@ void diceAnimation() {
 	// Dice animation whenever someone rolls
 
 	printf("\n ____\n");
-	printf(" /\' .\    _____\n");
-	printf("/: \___\  / .  /\\n");
-	printf("\' / . / /____/..\\n");
-	printf(" \/___/  \'  '\  /\n");
-	printf("          \'__'\/\n");
+	printf(" /\\' .\\    _____\n");
+	printf("/: \\___\\  / .  /\\\n");
+	printf("\\' / . / /____/..\\\n");
+	printf(" \\/___/  \\'  '\\  /\n");
+	printf("          \\'__'\\/\n");
 
 }
