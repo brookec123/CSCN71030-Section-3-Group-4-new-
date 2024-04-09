@@ -109,4 +109,4 @@ bool isGameDone(PLAYER* arrayOfPlayers, int numberOfPlayers);
 /// @param numberOfPlayers (int)
 /// @param currentWinnerIndexes (int**)
 /// @return (void)
-void whoWon(PLAYER* arrayOfPlayers, int numberOfPlayers, int** currentWinnerIndexes);
+void whoWon(PLAYER* arrayOfPlayers, int numberOfPlayers, int* currentWinnerIndexes);
