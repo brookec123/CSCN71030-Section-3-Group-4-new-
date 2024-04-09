@@ -5,8 +5,8 @@
 #include "GameLogic.h"
 
 /*
-				 				 0			1		  2			3
-              				  Game 1     Game 2    Game 3    Game 4      
+                                 0			1		  2			3
+                              Game 1     Game 2    Game 3    Game 4
  --------------------------------------------------------------------
    0 | Ones                |         |         |         |         |
  --------------------------------------------------------------------
@@ -52,9 +52,9 @@ int calculateUpper(DIE* dice, int valueToCheckFor)
 {
 
     int score = 0;
-    for(int index = 0; index < NUMBER_OF_DICE; index++)
+    for (int index = 0; index < NUMBER_OF_DICE; index++)
     {
-        if(GetValue(dice[index]) == valueToCheckFor)
+        if (GetValue(dice[index]) == valueToCheckFor)
         {
             score += valueToCheckFor;
         }
@@ -64,12 +64,12 @@ int calculateUpper(DIE* dice, int valueToCheckFor)
 
 int calculateThreeOfAKind(DIE* dice)
 {
-    int dieValueCounter[] = {0, 0, 0, 0, 0, 0};
+    int dieValueCounter[] = { 0, 0, 0, 0, 0, 0 };
 
-    for(int index = 0; index < NUMBER_OF_DICE; index++)
+    for (int index = 0; index < NUMBER_OF_DICE; index++)
     {
-        dieValueCounter[GetValue(dice[index])-1] ++;
-        if(dieValueCounter[GetValue(dice[index])-1] == 3)
+        dieValueCounter[GetValue(dice[index]) - 1]++;
+        if (dieValueCounter[GetValue(dice[index]) - 1] == 3)
         {
             return TotalAllDice(dice, NUMBER_OF_DICE);
         }
@@ -80,12 +80,12 @@ int calculateThreeOfAKind(DIE* dice)
 
 int calculateFourOfAKind(DIE* dice)
 {
-    int dieValueCounter[] = {0, 0, 0, 0, 0, 0};
+    int dieValueCounter[] = { 0, 0, 0, 0, 0, 0 };
 
-    for(int index = 0; index < NUMBER_OF_DICE; index++)
+    for (int index = 0; index < NUMBER_OF_DICE; index++)
     {
-        dieValueCounter[GetValue(dice[index])-1] ++;
-        if(dieValueCounter[GetValue(dice[index])-1] == 4)
+        dieValueCounter[GetValue(dice[index]) - 1]++;
+        if (dieValueCounter[GetValue(dice[index]) - 1] == 4)
         {
             return TotalAllDice(dice, NUMBER_OF_DICE);
         }
@@ -96,24 +96,24 @@ int calculateFourOfAKind(DIE* dice)
 
 int calculateFullHouse(DIE* dice)
 {
-    int dieValueCounter[] = {0, 0, 0, 0, 0, 0};
-        bool checkFor2 = false;
+    int dieValueCounter[] = { 0, 0, 0, 0, 0, 0 };
+    bool checkFor2 = false;
     bool checkFor3 = false;
 
-    for(int index = 0; index < NUMBER_OF_DICE; index++)
+    for (int index = 0; index < NUMBER_OF_DICE; index++)
     {
-        dieValueCounter[GetValue(dice[index])-1] ++;
-        if(dieValueCounter[GetValue(dice[index])-1] == 2)
+        dieValueCounter[GetValue(dice[index]) - 1]++;
+        if (dieValueCounter[GetValue(dice[index]) - 1] == 2)
         {
             checkFor2 = true;
         }
-        else if(dieValueCounter[GetValue(dice[index])-1] == 3)
+        else if (dieValueCounter[GetValue(dice[index]) - 1] == 3)
         {
             checkFor3 = true;
         }
     }
 
-    if(checkFor2 && checkFor3)
+    if (checkFor2 && checkFor3)
     {
         return 25;
     }
@@ -129,15 +129,15 @@ int calculateSmallStraight(DIE* dice)
     int previousValue = 0;
     int numberOfSubquentialDice = 0;
 
-    for(int i = 0; i < NUMBER_OF_DICE; i++)
+    for (int i = 0; i < NUMBER_OF_DICE; i++)
     {
-        if(GetValue(sortedDice[i]) == previousValue)
+        if (GetValue(sortedDice[i]) == previousValue)
         {
-           numberOfSubquentialDice ++;
+            numberOfSubquentialDice++;
         }
     }
 
-    if(numberOfSubquentialDice >= 4)
+    if (numberOfSubquentialDice >= 4)
     {
         return 30;
     }
@@ -171,9 +171,9 @@ int calculateLargeStraight(DIE* dice)
 
 int calculateFirstYahtzee(DIE* dice)
 {
-    for(int i = 0; i < NUMBER_OF_DICE; i++)
+    for (int i = 0; i < NUMBER_OF_DICE; i++)
     {
-        if(GetValue(dice[i]) != GetValue(dice[0]))
+        if (GetValue(dice[i]) != GetValue(dice[0]))
         {
             return 0;
         }
@@ -190,50 +190,50 @@ int calculateChance(DIE* dice)
 void calculateCanScore(DIE* dice, PPLAYER p)
 {
     // calculating upper scores
-    for(int num = 1; num <= 6; num++)
+    for (int num = 1; num <= 6; num++)
     {
-        if(p->currentScore[num-1][GetCurrentGameNumber(*p) - 1] == -1)
+        if (p->currentScore[num - 1][GetCurrentGameNumber(*p) - 1] == -1)
         {
-            p->canScore[num-1][GetCurrentGameNumber(*p) - 1] = calculateUpper(dice, num);
+            p->canScore[num - 1][GetCurrentGameNumber(*p) - 1] = calculateUpper(dice, num);
         }
     }
     // calculating lower scores
-    if(p->currentScore[6][GetCurrentGameNumber(*p) - 1] == -1)
+    if (p->currentScore[6][GetCurrentGameNumber(*p) - 1] == -1)
     {
         p->canScore[6][GetCurrentGameNumber(*p) - 1] = calculateThreeOfAKind(dice);
     }
 
-    if(p->currentScore[7][GetCurrentGameNumber(*p) - 1] == -1)
+    if (p->currentScore[7][GetCurrentGameNumber(*p) - 1] == -1)
     {
         p->canScore[7][GetCurrentGameNumber(*p) - 1] = calculateFourOfAKind(dice);
     }
 
-    if(p->currentScore[8][GetCurrentGameNumber(*p) - 1] == -1)
+    if (p->currentScore[8][GetCurrentGameNumber(*p) - 1] == -1)
     {
         p->canScore[8][GetCurrentGameNumber(*p) - 1] = calculateFullHouse(dice);
     }
 
-    if(p->currentScore[9][GetCurrentGameNumber(*p) - 1] == -1)
+    if (p->currentScore[9][GetCurrentGameNumber(*p) - 1] == -1)
     {
         p->canScore[9][GetCurrentGameNumber(*p) - 1] = calculateSmallStraight(dice);
     }
 
-    if(p->currentScore[10][GetCurrentGameNumber(*p) - 1] == -1)
+    if (p->currentScore[10][GetCurrentGameNumber(*p) - 1] == -1)
     {
         p->canScore[10][GetCurrentGameNumber(*p) - 1] = calculateLargeStraight(dice);
     }
 
-    if(p->currentScore[11][GetCurrentGameNumber(*p) - 1] == -1 && p->currentScore[13][GetCurrentGameNumber(*p) - 1] == -1)
+    if (p->currentScore[11][GetCurrentGameNumber(*p) - 1] == -1 && p->currentScore[13][GetCurrentGameNumber(*p) - 1] == -1)
     {
         p->canScore[11][GetCurrentGameNumber(*p) - 1] = calculateFirstYahtzee(dice);
     }
 
-    if(p->currentScore[12][GetCurrentGameNumber(*p) - 1] == -1)
+    if (p->currentScore[12][GetCurrentGameNumber(*p) - 1] == -1)
     {
         p->canScore[12][GetCurrentGameNumber(*p) - 1] = calculateChance(dice);
     }
 
-    if(p->currentScore[11][GetCurrentGameNumber(*p) - 1] == 50)
+    if (p->currentScore[11][GetCurrentGameNumber(*p) - 1] == 50)
     {
         p->canScore[13][GetCurrentGameNumber(*p) - 1] += 2 * calculateFirstYahtzee(dice);
     }
@@ -249,7 +249,7 @@ void calculateUpperSubTotal(PPLAYER p)
 {
     int sum = 0;
 
-    for(int i = 0; i <= 5; i++)
+    for (int i = 0; i <= 5; i++)
     {
         sum += p->currentScore[i][GetCurrentGameNumber(*p) - 1];
     }
@@ -278,12 +278,12 @@ void calculateLowerTotal(PPLAYER p)
 {
     int sum = 0;
 
-    for(int i = 6; i <= 12; i++)
+    for (int i = 6; i <= 12; i++)
     {
         sum += p->currentScore[i][GetCurrentGameNumber(*p) - 1];
     }
 
-    if(p->currentScore[13][GetCurrentGameNumber(*p) - 1] >= 100)
+    if (p->currentScore[13][GetCurrentGameNumber(*p) - 1] >= 100)
     {
         sum += p->currentScore[13][GetCurrentGameNumber(*p) - 1];
     }
@@ -307,9 +307,9 @@ void calculateFinalTotalsAndBonuses(PPLAYER p)
 
 bool isGameDone(PLAYER* arrayOfPlayers, int numberOfPlayers)
 {
-    for(int p = 0; p < numberOfPlayers; p++)
+    for (int p = 0; p < numberOfPlayers; p++)
     {
-        if(!IsGameDoneForPlayer(arrayOfPlayers[p]))
+        if (!IsGameDoneForPlayer(arrayOfPlayers[p]))
         {
             return false;
         }
@@ -319,30 +319,30 @@ bool isGameDone(PLAYER* arrayOfPlayers, int numberOfPlayers)
 }
 
 
-void whoWon(PLAYER* arrayOfPlayers, int numberOfPlayers, int** currentWinnerIndexes)
+void whoWon(PLAYER* arrayOfPlayers, int numberOfPlayers, int* currentWinnerIndexes)
 {
-    for(int i = 0; i < numberOfPlayers; i++)
+    for (int i = 0; i < numberOfPlayers; i++)
     {
         currentWinnerIndexes[i] = -1;
     }
 
-    if(isGameDone(arrayOfPlayers, numberOfPlayers))
+    if (isGameDone(arrayOfPlayers, numberOfPlayers))
     {
         int lastIndex = 1;
-        currentWinnerIndexes[0] = arrayOfPlayers[0].currentScore[18][arrayOfPlayers[0].currentGameNumber-1];
-        for(int p = 0; p < numberOfPlayers; p++)
+        currentWinnerIndexes[0] = arrayOfPlayers[0].currentScore[18][arrayOfPlayers[0].currentGameNumber - 1];
+        for (int p = 0; p < numberOfPlayers; p++)
         {
             // checking if current player has a larger grand total then the current player with the largest grand total
-            if(arrayOfPlayers[p].currentScore[18][GetCurrentGameNumber(arrayOfPlayers[p]) - 1] > arrayOfPlayers[*currentWinnerIndexes[0]].currentScore[18][GetCurrentGameNumber(arrayOfPlayers[*currentWinnerIndexes[0]]) - 1])
+            if (arrayOfPlayers[p].currentScore[18][GetCurrentGameNumber(arrayOfPlayers[p]) - 1] > arrayOfPlayers[currentWinnerIndexes[0]].currentScore[18][GetCurrentGameNumber(arrayOfPlayers[currentWinnerIndexes[0]]) - 1])
             {
-                for(int i = 0; i < numberOfPlayers; i++)
+                for (int i = 0; i < numberOfPlayers; i++)
                 {
                 }
             }
             // checking for ties
-            else if(arrayOfPlayers[p].currentScore[18][GetCurrentGameNumber(arrayOfPlayers[p]) - 1] == arrayOfPlayers[*currentWinnerIndexes[0]].currentScore[18][GetCurrentGameNumber(arrayOfPlayers[*currentWinnerIndexes[0]]) - 1])
+            else if (arrayOfPlayers[p].currentScore[18][GetCurrentGameNumber(arrayOfPlayers[p]) - 1] == arrayOfPlayers[currentWinnerIndexes[0]].currentScore[18][GetCurrentGameNumber(arrayOfPlayers[currentWinnerIndexes[0]]) - 1])
             {
-                lastIndex ++;
+                lastIndex++;
             }
         }
         return;
