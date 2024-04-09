@@ -8,9 +8,11 @@
 
 typedef struct ui {
 
-	char* userInput;
-
 	int numOfPlayers;
+
+	PLAYER p[10];
+
+	DIE d[5];
 
 }UI;
 
