@@ -128,14 +128,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Die.h" />
+    <ClInclude Include="FileIO.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="GameLogic.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Die.c" />
+    <ClCompile Include="FileIO.c" />
     <ClCompile Include="GameLogic.c" />
+    <ClCompile Include="Game.c" />
     <ClCompile Include="Player.c" />
     <ClCompile Include="Source.c" />
+    <ClCompile Include="UI.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

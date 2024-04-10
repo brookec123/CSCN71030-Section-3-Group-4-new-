@@ -11,14 +11,24 @@ PLAYER CreateNewPlayer(char* n)
     // Allocate memory for the name field and copy the provided name into it
     p.name = (char*)malloc(MAX_NAME_LENGTH * sizeof(char));
     if (p.name != NULL) {
-        strcpy(p.name, n, MAX_NAME_LENGTH);
+        strncpy(p.name, n, MAX_NAME_LENGTH);
     }
     else
     {
         fprintf(stderr, "Error allocating memory for name.\n");
         exit(1); // Terminate program if allocation fails
     }
-   
+    p.saveFileName = (char*)malloc(MAX_FILE_NAME_LENGTH * sizeof(char));
+    if (p.saveFileName != NULL) {
+
+        strncpy(p.saveFileName, n, MAX_FILE_NAME_LENGTH);
+        strncat(p.saveFileName, "-Yhatzee-save.txt", MAX_FILE_NAME_LENGTH);
+    }
+    else
+    {
+        fprintf(stderr, "Error allocating memory for file name.\n");
+        exit(1); // Terminate program if allocation fails
+    }
 
     SetCurrentGameNumber(&p, 1);
 
@@ -50,7 +60,7 @@ PLAYER CreateNewPlayer(char* n)
             }
         }
     }
-    
+
     p.canScore = (int**)malloc(sizeof(int*) * NUMBER_OF_ITEMS_TO_SCORE_FOR);
     if (p.canScore == NULL)
     {
@@ -79,7 +89,7 @@ PLAYER CreateNewPlayer(char* n)
             }
         }
     }
-
+    p.hasWonCurrentGame = false;
     return p;
 }
 
@@ -95,7 +105,7 @@ void SetCurrentGameNumber(PPLAYER p, int gameNumber)
         fprintf(stderr, "Error: NULL pointer passed to SetCurrentGameNumber.\n");
         return;
     }
-    
+
     // Set the current game number
     p->currentGameNumber = gameNumber;
 }
@@ -104,7 +114,7 @@ bool IsGameDoneForPlayer(PLAYER p)
 {
     for (int item = 0; item < 12; item++)
     {
-        if(p.currentScore[item][GetCurrentGameNumber(p) - 1] == -1)
+        if (p.currentScore[item][GetCurrentGameNumber(p) - 1] == -1)
         {
             return false;
         }
@@ -132,4 +142,3 @@ void DestroyPlayer(PPLAYER p)
     }
     free(p->canScore);
 }
-
