@@ -126,13 +126,16 @@ void menuChoice(GAME* g) { // option to select from the main menu
 		initializeGame();
 		playGame(*g);
 		printMainMenu(g);
-
+		menuChoice(g);
 		break;
 
 	case 2:
 
 		loadGame(p.saveFileName, &p);
+
 		printMainMenu(g);
+
+		menuChoice(g);
 
 		break;
 
@@ -141,6 +144,8 @@ void menuChoice(GAME* g) { // option to select from the main menu
 		printRules();
 
 		printMainMenu(g);
+
+		menuChoice(g);
 
 		break;
 
