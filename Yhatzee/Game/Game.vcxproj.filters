@@ -30,7 +30,7 @@
     <ClInclude Include="FileIO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameManager.h">
+    <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,7 +53,7 @@
     <ClCompile Include="FileIO.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameManager.c">
+    <ClCompile Include="Game.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

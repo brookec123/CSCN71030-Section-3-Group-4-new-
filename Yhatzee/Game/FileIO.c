@@ -29,7 +29,7 @@ int saveGame(char* filename, PLAYER p)
     return 0;
 }
 
-bool loadGame(char* filename, PPLAYER p) {
+int loadGame(char* filename, PPLAYER p) {
     FILE* fp = fopen(filename, "r");
     if (fp == NULL) {
         fprintf(stderr, "ERROR: file failed to open!");
@@ -64,8 +64,7 @@ bool loadGame(char* filename, PPLAYER p) {
     bool result = antiCheat(*p);
     fclose(fp);
 
-    return result;  
-
+    return result;
 }
 
 bool antiCheat(PLAYER p)

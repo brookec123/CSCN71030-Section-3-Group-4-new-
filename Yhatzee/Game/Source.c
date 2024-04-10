@@ -2,17 +2,14 @@
 /// File Author: Brooke Cronin
 /// Course Code: CSCN71030 Group 4
 /// Description: 
-#define _CRT_SECURE_NO_WARNINGS
-#include <time.h>
-
-#include "Die.h"
-#include "FileIO.h"
-#include "GameManager.h"
 #include "GameLogic.h"
+#include "Die.h"
 #include "Player.h"
 #include "UI.h"
+#include <time.h>
 
 int main(int argc, char* argv[]) {
+    srand(time(NULL));
 
     if (argc != 2) {
 
@@ -26,7 +23,7 @@ int main(int argc, char* argv[]) {
 
     }
 
-    GAME_MANAGER g = initializeGame();
+    GAME g = initializeGame();
 
     g.numOfPlayers = atoi(argv[1]);
 

@@ -13,10 +13,8 @@
 #include <stdlib.h>
 
 #include "Die.h"
-#include "FileIO.h"
-#include "GameManager.h"
 #include "Player.h"
-#include "UI.h"
+#include "Game.h"
 
 int calculateUpper(DIE* dice, int valueToCheckFor);
 
@@ -50,6 +48,6 @@ void calculateGrandTotal(PPLAYER p);
 
 void calculateFinalTotalsAndBonuses(PPLAYER p);
 
-bool isGameDone(GAME_MANAGER g);
+bool isGameDone(GAME g);
 
-void whoWon(GAME_MANAGER g);
+void whoWon(GAME g);

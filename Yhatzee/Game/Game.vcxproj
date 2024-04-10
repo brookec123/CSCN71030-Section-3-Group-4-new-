@@ -129,7 +129,7 @@
   <ItemGroup>
     <ClInclude Include="Die.h" />
     <ClInclude Include="FileIO.h" />
-    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="GameLogic.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="UI.h" />
@@ -138,7 +138,7 @@
     <ClCompile Include="Die.c" />
     <ClCompile Include="FileIO.c" />
     <ClCompile Include="GameLogic.c" />
-    <ClCompile Include="GameManager.c" />
+    <ClCompile Include="Game.c" />
     <ClCompile Include="Player.c" />
     <ClCompile Include="Source.c" />
     <ClCompile Include="UI.c" />

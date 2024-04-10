@@ -1,4 +1,4 @@
-/// File Name: Player.c
+/// File Name: Player
 /// File Author: Brooke Cronin
 /// Course Code: CSCN71030 Group 4
 /// Description: 
@@ -18,7 +18,17 @@ PLAYER CreateNewPlayer(char* n)
         fprintf(stderr, "Error allocating memory for name.\n");
         exit(1); // Terminate program if allocation fails
     }
+    p.saveFileName = (char*)malloc(MAX_FILE_NAME_LENGTH * sizeof(char));
+    if (p.saveFileName != NULL) {
 
+        strncpy(p.saveFileName, n, MAX_FILE_NAME_LENGTH);
+        strncat(p.saveFileName, "-Yhatzee-save.txt", MAX_FILE_NAME_LENGTH);
+    }
+    else
+    {
+        fprintf(stderr, "Error allocating memory for file name.\n");
+        exit(1); // Terminate program if allocation fails
+    }
 
     SetCurrentGameNumber(&p, 1);
 
