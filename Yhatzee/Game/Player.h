@@ -17,35 +17,20 @@
 typedef struct Player
 {
 	char* name;
-  	int currentGameNumber; // SUBTRACT 1 FOR INDEX
+	int currentGameNumber;
 	int** currentScore;
 	int** canScore;
+	bool hasWonCurrentGame;
 	// include file name where player's info is stored????
 
-} PLAYER, *PPLAYER;
+} PLAYER, * PPLAYER;
 
-/// @brief Written by: Brooke Cronin
-/// @param n (char*)
-/// @return (PLAYER)
 PLAYER CreateNewPlayer(char* n);
 
-/// @brief Written by: Brooke Cronin
-/// @param p (PLAYER)
-/// @return (int)
 int GetCurrentGameNumber(PLAYER p);
 
-/// @brief Written by: Brooke Cronin
-/// @param p (PPLAYER)
-/// @param gameNumber (int)
-/// @return (void)
 void SetCurrentGameNumber(PPLAYER p, int gameNumber);
 
-/// @brief Written by: Brooke Cronin
-/// @param p (PLAYER)
-/// @return (bool)
 bool IsGameDoneForPlayer(PLAYER p);
 
-/// @brief Written by: Brooke Cronin
-/// @param p (PPLAYER)
-/// @return (void)
 void DestroyPlayer(PPLAYER p);

@@ -1,10 +1,15 @@
-﻿  GameLogic.c
-C:\Users\brook\OneDrive\Desktop\CSCN71030\GroupProject\Yhatzee\Game\GameLogic.c(127,31): warning C4047: 'function': 'PDIE *' differs in levels of indirection from 'PDIE'
-C:\Users\brook\OneDrive\Desktop\CSCN71030\GroupProject\Yhatzee\Game\GameLogic.c(127,31): warning C4024: 'SortDiceSmallestToLargest': different types for formal and actual parameter 1
-C:\Users\brook\OneDrive\Desktop\CSCN71030\GroupProject\Yhatzee\Game\GameLogic.c(151,31): warning C4047: 'function': 'PDIE *' differs in levels of indirection from 'PDIE'
-C:\Users\brook\OneDrive\Desktop\CSCN71030\GroupProject\Yhatzee\Game\GameLogic.c(151,31): warning C4024: 'SortDiceSmallestToLargest': different types for formal and actual parameter 1
-C:\Users\brook\OneDrive\Desktop\CSCN71030\GroupProject\Yhatzee\Game\GameLogic.c(326,33): warning C4047: '=': 'int *' differs in levels of indirection from 'int'
-C:\Users\brook\OneDrive\Desktop\CSCN71030\GroupProject\Yhatzee\Game\GameLogic.c(332,33): warning C4047: '=': 'int *' differs in levels of indirection from 'int'
+﻿  Game.c
+C:\Users\brook\OneDrive\Desktop\Yhatzeev2\CSCN71030-Section-3-Group-4-new-\Yhatzee\Game\GameLogic.h(51,22): error C2146: syntax error: missing ')' before identifier 'g'
+C:\Users\brook\OneDrive\Desktop\Yhatzeev2\CSCN71030-Section-3-Group-4-new-\Yhatzee\Game\GameLogic.h(51,22): error C2061: syntax error: identifier 'g'
+C:\Users\brook\OneDrive\Desktop\Yhatzeev2\CSCN71030-Section-3-Group-4-new-\Yhatzee\Game\GameLogic.h(51,22): error C2059: syntax error: ';'
+C:\Users\brook\OneDrive\Desktop\Yhatzeev2\CSCN71030-Section-3-Group-4-new-\Yhatzee\Game\GameLogic.h(51,23): error C2059: syntax error: ')'
+C:\Users\brook\OneDrive\Desktop\Yhatzeev2\CSCN71030-Section-3-Group-4-new-\Yhatzee\Game\GameLogic.h(53,18): error C2146: syntax error: missing ')' before identifier 'e'
+C:\Users\brook\OneDrive\Desktop\Yhatzeev2\CSCN71030-Section-3-Group-4-new-\Yhatzee\Game\GameLogic.h(53,18): error C2061: syntax error: identifier 'e'
+C:\Users\brook\OneDrive\Desktop\Yhatzeev2\CSCN71030-Section-3-Group-4-new-\Yhatzee\Game\GameLogic.h(53,18): error C2059: syntax error: ';'
+C:\Users\brook\OneDrive\Desktop\Yhatzeev2\CSCN71030-Section-3-Group-4-new-\Yhatzee\Game\GameLogic.h(53,19): error C2059: syntax error: ')'
+C:\Users\brook\OneDrive\Desktop\Yhatzeev2\CSCN71030-Section-3-Group-4-new-\Yhatzee\Game\Game.c(4,8): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+  GameLogic.c
   Source.c
+C:\Users\brook\OneDrive\Desktop\Yhatzeev2\CSCN71030-Section-3-Group-4-new-\Yhatzee\Game\Source.c(12,11): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+  UI.c
   Generating Code...
-  Game.vcxproj -> C:\Users\brook\OneDrive\Desktop\CSCN71030\GroupProject\Yhatzee\x64\Debug\Game.exe

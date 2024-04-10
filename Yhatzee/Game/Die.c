@@ -30,7 +30,7 @@ void RollDie(PDIE d)
 
 void RollArrayOfDice(PDIE d, int size)
 {
-    for(int i = 0; i < size; i++)
+    for (int i = 0; i < size; i++)
     {
         RollDie(&d[i]);
     }
@@ -39,17 +39,17 @@ void RollArrayOfDice(PDIE d, int size)
 int TotalAllDice(DIE* dice, int number_of_dice)
 {
     int sum = 0;
-    for(int index = 0; index < number_of_dice; index++)
+    for (int index = 0; index < number_of_dice; index++)
     {
         sum += GetValue(dice[index]);
     }
     return sum;
 }
 
-int compare( const void* a, const void* b)
+int compare(const void* a, const void* b)
 {
-    int int_a = * ( (int*) a );
-    int int_b = * ( (int*) b );
+    int int_a = *((int*)a);
+    int int_b = *((int*)b);
 
     return (int_a > int_b) - (int_a < int_b);
 }
@@ -57,5 +57,13 @@ int compare( const void* a, const void* b)
 
 void SortDiceSmallestToLargest(PDIE dice, int number_of_dice)
 {
-    qsort( dice, number_of_dice, sizeof(int), compare );
+    qsort(dice, number_of_dice, sizeof(int), compare);
+}
+
+void DisplayArrayOfDice(PDIE d, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        printf("Die # %d: %d\n", i + 1, GetValue(d[i]));
+    }
 }

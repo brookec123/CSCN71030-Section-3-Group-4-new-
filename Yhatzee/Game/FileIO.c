@@ -5,7 +5,7 @@ int saveGame(char* filename, PLAYER p)
 {
     FILE* fp = fopen(filename, "w");
     if (fp == NULL) {
-        fprintf(stderr, "ERROR: file failed to open!")
+        fprintf(stderr, "ERROR: file failed to open!");
         return 1;
     }
 
@@ -32,8 +32,8 @@ int saveGame(char* filename, PLAYER p)
 int loadGame(char* filename, PPLAYER p) {
     FILE* fp = fopen(filename, "r");
     if (fp == NULL) {
-        fprintf(stderr, "ERROR: file failed to open!")
-            return 1;
+        fprintf(stderr, "ERROR: file failed to open!");
+        return 1;
     }
 
     char buffer[MAX_NAME_LENGTH];
@@ -67,10 +67,10 @@ int loadGame(char* filename, PPLAYER p) {
 
 bool antiCheat(PLAYER p)
 {
-    if (GetCurrentGameNumber(p) > 10 || GetCurrentGameNumber < 1) {
+    if (GetCurrentGameNumber(p) > 10 || GetCurrentGameNumber(p) < 1) {
         return false;
     }
-    for (int j = 0; j < MAX_NUMBER_OF_GAMES; j++){
+    for (int j = 0; j < MAX_NUMBER_OF_GAMES; j++) {
         //if outside of the bounds                                 OR        IN bounds, not 0, and marked as scorable (could overwrite the score)
         if ((p.currentScore[0][j] > 5 || p.currentScore[0][j] < 0) || (p.currentScore[0][j] != 0 && p.canScore[0][j] == -1)) {
             return false;//Ones
@@ -90,7 +90,7 @@ bool antiCheat(PLAYER p)
         else if ((p.currentScore[5][j] > 30 || p.currentScore[5][j] < 0) || (p.currentScore[5][j] != 0 && p.canScore[5][j] == -1)) {
             return false;
         }//3 of a kind  v
-        else if ((p.currentScore[6][j] > 30 || p.currentScore[]6[j] < 0) || (p.currentScore[6][j] != 0 && p.canScore[6][j] == -1)) {
+        else if ((p.currentScore[6][j] > 30 || p.currentScore[6][j] < 0) || (p.currentScore[6][j] != 0 && p.canScore[6][j] == -1)) {
             return false;
         }//4 of a kind  v
         else if ((p.currentScore[7][j] > 30 || p.currentScore[7][j] < 0) || (p.currentScore[7][j] != 0 && p.canScore[7][j] == -1)) {
