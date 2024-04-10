@@ -305,7 +305,7 @@ void calculateFinalTotalsAndBonuses(PPLAYER p)
     calculateGrandTotal(p);
 }
 
-bool isGameDone(GAME g)
+bool isGameDone(GAME_MANAGER g)
 {
     for (int p = 0; p < g.numOfPlayers; p++)
     {
@@ -318,7 +318,7 @@ bool isGameDone(GAME g)
     return true;
 }
 
-void whoWon(GAME g)
+void whoWon(GAME_MANAGER g)
 {
     if (isGameDone(g))
     {

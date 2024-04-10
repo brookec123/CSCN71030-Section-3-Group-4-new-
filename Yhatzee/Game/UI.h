@@ -1,22 +1,27 @@
 #pragma once
 // UI.h file containing all of the UI.c functions
-#include "GameLogic.h"
-#include "Game.h"
-
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
 #include <stdlib.h>
-void playGame(GAME g);
 
-void displayFinalScores(GAME g);
+#include "Die.h"
+#include "FileIO.h"
+#include "GameManager.h"
+#include "GameLogic.h"
+#include "Player.h"
 
-void playerTurn(GAME* g);
+void playGame(GAME_MANAGER g);
 
-void printMainMenu(GAME* g);
+void displayFinalScores(GAME_MANAGER g);
 
-void menuChoice(GAME* g);
+void playerTurn(GAME_MANAGER* g);
 
-void printScorecard(GAME g, int** scoreArray);
+void printMainMenu(GAME_MANAGER g);
+
+void menuChoice(GAME_MANAGER g);
+
+void printScorecard(GAME_MANAGER g, int** scoreArray);
 
 void printRules();
 

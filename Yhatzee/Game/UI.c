@@ -1,6 +1,6 @@
 #include "UI.h"
 
-void playGame(GAME g)
+void playGame(GAME_MANAGER g)
 { // functions to check if game is done, if not the game starts 
 	while (!isGameDone(g)) {
 		printf("\n\n%s's turn.\n", g.players[g.currentPlayerIndex].name);
@@ -14,7 +14,7 @@ void playGame(GAME g)
 	displayFinalScores(g);
 }
 
-void displayFinalScores(GAME g)
+void displayFinalScores(GAME_MANAGER g)
 { // function that displays final scores 
 	whoWon(g);
 	printf("Winner(s): ");
@@ -35,7 +35,7 @@ void displayFinalScores(GAME g)
 	}
 }
 
-void playerTurn(GAME* g) { // function that plays the game when it is the specified player's turn
+void playerTurn(GAME_MANAGER* g) { // function that plays the game when it is the specified player's turn
 
 	int numberOfRolls = 1;
 
@@ -85,8 +85,7 @@ void playerTurn(GAME* g) { // function that plays the game when it is the specif
 	}
 }
 
-
-void printMainMenu(GAME* g) { // main menu print 
+void printMainMenu(GAME_MANAGER g) { // main menu print 
 
 
 	printf("\n__   __        _      _                     \n");
@@ -96,9 +95,9 @@ void printMainMenu(GAME* g) { // main menu print
 	printf("  | |  | (_| || | | || |_  / / |  __/|  __/ \n");
 	printf("  \\_/   \\__,_||_| |_| \\__|/___| \\___| \\___| \n");
 
-	printf("\nNumber of players: %d", g->numOfPlayers);
+	printf("\nNumber of players: %d", g.numOfPlayers);
 
-	printf("\n\nWelcome to Yhatzee! This is a console based version of the beloved classic dice game... known as Yhatzee.\n");
+	printf("\n\nWelcome to Yhatzee! This is a console based version of the beloved classic dice game... known as Yahtzee.\n");
 	printf("\n=================================================================================================================\n");
 
 	printf("Menu:\n\n");
@@ -110,7 +109,7 @@ void printMainMenu(GAME* g) { // main menu print
 
 }
 
-void menuChoice(GAME* g) { // option to select from the main menu 
+void menuChoice(GAME_MANAGER g) { // option to select from the main menu 
 
 	PLAYER p;
 
@@ -123,7 +122,7 @@ void menuChoice(GAME* g) { // option to select from the main menu
 
 	case 1:
 		initializeGame();
-		playGame(*g);
+		playGame(g);
 		printMainMenu(g);
 
 		break;
@@ -194,12 +193,12 @@ void printRules() { // Game rules print
 
 }
 
-void printScorecard(GAME g, int** scoreArray) { // scoresheet with continuous updating 
+void printScorecard(GAME_MANAGER g, int** scoreArray) { // scoresheet with continuous updating 
 
 	char score[5];
 
 	printf("\n\n___________________________________________________________________________________________________\n");
-	printf(" | UPPER SECTION || HOW TO SCORE || GAME #1 || GAME #2 || GAME #3 || GAME #4 || GAME #5 || GAME #6 |\n");
+	printf(" | UPPER SECTION || HOW TO SCORE || GAME_MANAGER #1 || GAME_MANAGER #2 || GAME_MANAGER #3 || GAME_MANAGER #4 || GAME_MANAGER #5 || GAME_MANAGER #6 |\n");
 	printf(" |_______________||______________||_________||_________||_________||_________||_________||_________|\n");
 	printf(" |               ||              ||         ||         ||         ||         ||         ||         |\n");
 	printf(" |         +---+ ||              ||         ||         ||         ||         ||         ||         |\n");

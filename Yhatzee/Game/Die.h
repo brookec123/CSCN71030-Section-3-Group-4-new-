@@ -1,4 +1,4 @@
-/// File Name: Die
+/// File Name: Die.h
 /// File Author: Brooke Cronin
 /// Course Code: CSCN71030 Group 4
 /// Description: 

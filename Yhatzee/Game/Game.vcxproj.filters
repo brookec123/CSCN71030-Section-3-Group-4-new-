@@ -27,10 +27,10 @@
     <ClInclude Include="UI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
+    <ClInclude Include="FileIO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FileIO.h">
+    <ClInclude Include="GameManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -50,10 +50,10 @@
     <ClCompile Include="UI.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game.c">
+    <ClCompile Include="FileIO.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileIO.c">
+    <ClCompile Include="GameManager.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
