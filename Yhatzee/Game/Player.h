@@ -3,6 +3,10 @@
 /// Course Code: CSCN71030 Group 4
 /// Description: 
 #pragma once
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 #define _CRT_SECURE_NO_WARNINGS
 #define MAX_NAME_LENGTH 51 // including '/0' character at end
@@ -35,3 +39,7 @@ void SetCurrentGameNumber(PPLAYER p, int gameNumber);
 bool IsGameDoneForPlayer(PLAYER p);
 
 void DestroyPlayer(PPLAYER p);
+
+#ifdef __cplusplus
+}
+#endif

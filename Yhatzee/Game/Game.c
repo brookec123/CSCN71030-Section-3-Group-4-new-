@@ -20,7 +20,7 @@ int convertAndValidateUserInputToScoreIndex(int input)
 	return -1;
 }
 
-void goToNextPlayer(GAME g)
+void goToNextPlayer(GAME* g)
 { // function that goes to next player once turn is done 
-	g.currentPlayerIndex = (g.currentPlayerIndex + 1) % g.numOfPlayers;
+	g->currentPlayerIndex = (g->currentPlayerIndex + 1) % g->numOfPlayers;
 }

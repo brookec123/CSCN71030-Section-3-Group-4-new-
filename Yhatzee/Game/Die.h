@@ -3,6 +3,10 @@
 /// Course Code: CSCN71030 Group 4
 /// Description: 
 #pragma once
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 #define _CRT_SECURE_NO_WARNINGS
 #define MIN_VALUE 1
@@ -36,3 +40,7 @@ int compare(const void* a, const void* b);
 void SortDiceSmallestToLargest(PDIE dice, int number_of_dice);
 
 void DisplayArrayOfDice(PDIE d, int size);
+
+#ifdef __cplusplus
+}
+#endif
