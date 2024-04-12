@@ -1,5 +1,8 @@
 #pragma once
-
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 #include "Die.h"
 #include "FileIO.h"
 
@@ -18,5 +21,8 @@ GAME initializeGame();
 
 int convertAndValidateUserInputToScoreIndex(int input);
 
-void goToNextPlayer(GAME g);
+void goToNextPlayer(GAME* g);
 
+#ifdef __cplusplus
+}
+#endif

@@ -1,12 +1,1 @@
-﻿  Die.c
-  FileIO.c
-  GameLogic.c
-  Game.c
-C:\Users\brook\OneDrive\Desktop\Yhatzeev3\CSCN71030-Section-3-Group-4-new-\Yhatzee\Game\Game.c(4,8): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Player.c
-  Source.c
-C:\Users\brook\OneDrive\Desktop\Yhatzeev3\CSCN71030-Section-3-Group-4-new-\Yhatzee\Game\Source.c(12,11): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
-  UI.c
-  Generating Code...
-  LINK : C:\Users\brook\OneDrive\Desktop\Yhatzeev3\CSCN71030-Section-3-Group-4-new-\Yhatzee\x64\Debug\Game.exe not found or not built by the last incremental link; performing full link
-  Game.vcxproj -> C:\Users\brook\OneDrive\Desktop\Yhatzeev3\CSCN71030-Section-3-Group-4-new-\Yhatzee\x64\Debug\Game.exe
+﻿  Game.vcxproj -> C:\Users\brook\OneDrive\Desktop\Yhatzeev3\CSCN71030-Section-3-Group-4-new-\Yhatzee\x64\Debug\Game.exe

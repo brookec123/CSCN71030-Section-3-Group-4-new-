@@ -123,49 +123,69 @@ int calculateFullHouse(DIE* dice)
 
 int calculateSmallStraight(DIE* dice)
 {
-    PDIE sortedDice = dice;
-    SortDiceSmallestToLargest(sortedDice, NUMBER_OF_DICE);
-
-    int previousValue = 0;
-    int numberOfSubquentialDice = 0;
-
-    for (int i = 0; i < NUMBER_OF_DICE; i++)
+    PDIE sortedDice = (PDIE)malloc(sizeof(DIE) * NUMBER_OF_DICE);
+    if(sortedDice != NULL)
     {
-        if (GetValue(sortedDice[i]) == previousValue)
+        for (int i = 0; i < NUMBER_OF_DICE; i++)
         {
-            numberOfSubquentialDice++;
+            CreateDie(sortedDice[i]);
+            sortedDice[i].value = dice[i].value;
         }
-    }
+        SortDiceSmallestToLargest(sortedDice, NUMBER_OF_DICE);
 
-    if (numberOfSubquentialDice >= 4)
-    {
-        return 30;
-    }
+        int previousValue = 0;
+        int numberOfSubquentialDice = 0;
 
+        for (int i = 0; i < NUMBER_OF_DICE; i++)
+        {
+            if (GetValue(sortedDice[i]) == previousValue)
+            {
+                numberOfSubquentialDice++;
+            }
+        }
+
+        if (numberOfSubquentialDice >= 4)
+        {
+            free(sortedDice);
+            return 30;
+        }
+        
+    }
+    free(sortedDice);
     return 0;
 }
 
 int calculateLargeStraight(DIE* dice)
 {
-    PDIE sortedDice = dice;
-    SortDiceSmallestToLargest(sortedDice, NUMBER_OF_DICE);
-
-    int previousValue = 0;
-    int numberOfSubquentialDice = 0;
-
-    for (int i = 0; i < NUMBER_OF_DICE; i++)
+    PDIE sortedDice = (PDIE)malloc(sizeof(DIE) * NUMBER_OF_DICE);
+    if (sortedDice != NULL)
     {
-        if (GetValue(sortedDice[i]) == previousValue)
+        for (int i = 0; i < NUMBER_OF_DICE; i++)
         {
-            numberOfSubquentialDice++;
+            CreateDie(sortedDice[i]);
+            sortedDice[i].value = dice[i].value;
         }
-    }
+        SortDiceSmallestToLargest(sortedDice, NUMBER_OF_DICE);
 
-    if (numberOfSubquentialDice == 5)
-    {
-        return 40;
-    }
+        int previousValue = 0;
+        int numberOfSubquentialDice = 0;
 
+        for (int i = 0; i < NUMBER_OF_DICE; i++)
+        {
+            if (GetValue(sortedDice[i]) == previousValue)
+            {
+                numberOfSubquentialDice++;
+            }
+        }
+
+        if (numberOfSubquentialDice == 5)
+        {
+            free(sortedDice);
+            return 40;
+        }
+
+    }
+    free(sortedDice);
     return 0;
 }
 

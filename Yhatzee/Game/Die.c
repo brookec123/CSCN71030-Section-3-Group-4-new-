@@ -55,9 +55,9 @@ int compare(const void* a, const void* b)
 }
 
 
-void SortDiceSmallestToLargest(PDIE dice, int number_of_dice)
+void SortDiceSmallestToLargest(PDIE dice, int numberOfDice)
 {
-    qsort(dice, number_of_dice, sizeof(int), compare);
+    qsort(dice, numberOfDice, sizeof(int), compare);
 }
 
 void DisplayArrayOfDice(PDIE d, int size)

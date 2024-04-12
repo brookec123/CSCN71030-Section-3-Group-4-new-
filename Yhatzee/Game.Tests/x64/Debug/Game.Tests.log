@@ -1,2 +1,6 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(1134,5): error MSB6006: "link.exe" exited with code 1104.
-LINK : fatal error LNK1104: cannot open file 'Source.obj'
+﻿  Game.Tests.cpp
+C:\Users\brook\OneDrive\Desktop\Yhatzeev3\CSCN71030-Section-3-Group-4-new-\Yhatzee\Game.Tests\Game.Tests.cpp(1,1): warning C4603: '_CRT_SECURE_NO_WARNINGS': macro is not defined or definition is different after precompiled header use
+C:\Users\brook\OneDrive\Desktop\Yhatzeev3\CSCN71030-Section-3-Group-4-new-\Yhatzee\Game.Tests\Game.Tests.cpp(1,1): message : Add macro to precompiled header instead of defining here
+C:\Users\brook\OneDrive\Desktop\Yhatzeev3\CSCN71030-Section-3-Group-4-new-\Yhatzee\Game.Tests\Game.Tests.cpp(3,1): message : use of precompiled header
+     Creating library C:\Users\brook\OneDrive\Desktop\Yhatzeev3\CSCN71030-Section-3-Group-4-new-\Yhatzee\x64\Debug\Game.Tests.lib and object C:\Users\brook\OneDrive\Desktop\Yhatzeev3\CSCN71030-Section-3-Group-4-new-\Yhatzee\x64\Debug\Game.Tests.exp
+  Game.Tests.vcxproj -> C:\Users\brook\OneDrive\Desktop\Yhatzeev3\CSCN71030-Section-3-Group-4-new-\Yhatzee\x64\Debug\Game.Tests.dll
